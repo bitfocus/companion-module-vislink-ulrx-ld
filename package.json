@@ -1,11 +1,27 @@
 {
-  "name": "companion-module-vislink-ulrx-ld",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+	"name": "vislink-ulrx-ld",
+	"version": "1.0.0",
+	"api_version": "1.0.0",
+	"keywords": [
+		"hcam",
+		"ulrx"
+	],
+	"manufacturer": "Vislink",
+	"product": "ULRX-LD",
+	"shortname": "ulrx",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-vislink-ulrx-ld.git"
+	},
+	"author": "Leopold Strobl <leopold.strobl@vt-media.de>",
+	
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bitfocus/companion-module-vislink-ulrx-ld/issues"
+	},
+	"homepage": "https://github.com/bitfocus/companion-module-vislink-ulrx-ld#readme"
 }

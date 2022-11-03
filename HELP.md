@@ -1,12 +1,12 @@
-## AJA HELO
+## Vislink ULRX-LD Module
+
+Module to control an Vislink ULRX-LD receiver & demodulator.
 
 **Available commands**
 
-* Start/Stop Record
-* Start/Stop Streaming
-* Change recording profile
-* Change streaming profile
-* Rename file
-* Rename file with current timestamp - YYYYMMDD_HHMM
-
-Check out the [AJA HELO Support Page](https://www.aja.com/products/helo#support) for firmware updates and hardware support.
+* Demodulator / Frequency
+* Demodulator / Demod Type
+* Demodulator / Bandwidth
+* Demodulator / Guard Interval
+* Demodulator / Polarity
+* Routing / ASI1 Output (Encoder Input!)
