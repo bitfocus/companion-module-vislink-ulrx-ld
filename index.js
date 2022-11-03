@@ -69,7 +69,63 @@ instance.prototype.config_fields = function () {
 			label: 'Target IP',
 			width: 8,
 			regex: self.REGEX_IP
-		}
+		},
+		{
+			type:  'text',
+			id:    'infoLic',
+			width: 12,
+			label: 'Licenced Features',
+			value: 'Licences on Demodulator and Decoder (only for filtering the settings).'
+		},
+		//ToDo: set the licences dynamically after fetching the licensing information out of the receiver
+		{
+			type:  'checkbox',
+			id:    'FourInputDemod',
+			label: '4 Input Demod',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'Diversity',
+			label: 'Diversity',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'Deinterleaving',
+			label: 'De-interleaving',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'FourInputDualPedestal',
+			label: '4 Input Dual Pedestal',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'Descrambling',
+			label: 'De-scrambling',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'uhd',
+			label: '4K and UHD',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'DualDecode',
+			label: 'Dual decode',
+			width: 8
+		},
+		{
+			type:  'checkbox',
+			id:    'H264',
+			label: 'H.264',
+			width: 8
+		},
 	]
 };
 
@@ -96,6 +152,8 @@ instance.prototype.init_actions = function(system) {
 
 	let actionsArr = {};
 
+
+if(this.config.Diversity){
 	actionsArr.ASI1OutputMux = {
 		label: 'Decoder Source',
 		options: [
@@ -119,7 +177,7 @@ instance.prototype.init_actions = function(system) {
 			self.sendCommand(cmd);
 		}
 	};
-
+	
 	actionsArr.ASI2OutputMux = {
 		label: 'ASI Out Source',
 		options: [
@@ -143,6 +201,57 @@ instance.prototype.init_actions = function(system) {
 			self.sendCommand(cmd);
 		}
 	};
+}else{
+	actionsArr.ASI1OutputMux = {
+		label: 'Decoder Source',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Source',
+				id:      'ASI1OutputMuxSource',
+				width:   12,
+				default: 'DB_P17101_ASI1_OUTPUT_MUX&value=Demodulator',
+				choices:	[
+					{ id: 'DB_P17101_ASI1_OUTPUT_MUX&value=Demodulator',		label: 'Demodulator' },
+					{ id: 'DB_P17101_ASI1_OUTPUT_MUX&value=Ext ASI',		label: 'Ext ASI' },
+					{ id: 'DB_P17101_ASI1_OUTPUT_MUX&value=Off',		label: 'Off' },
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.ASI1OutputMuxSource;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	
+	actionsArr.ASI2OutputMux = {
+		label: 'ASI Out Source',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Source',
+				id:      'ASI2OutputMuxSource',
+				width:   12,
+				default: 'DB_P17101_ASI2_OUTPUT_MUX&value=Demodulator',
+				choices:	[
+					{ id: 'DB_P17101_ASI2_OUTPUT_MUX&value=Demodulator',		label: 'Demodulator' },
+					{ id: 'DB_P17101_ASI2_OUTPUT_MUX&value=Ext ASI',		label: 'Ext ASI' },
+					{ id: 'DB_P17101_ASI2_OUTPUT_MUX&value=Off',		label: 'Off' },
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.ASI2OutputMuxSource;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+}
+
+	
+
+	
 
 	actionsArr.ULRXFrequency = {
 
@@ -187,6 +296,8 @@ instance.prototype.init_actions = function(system) {
 		}
 	};
 
+
+	if(this.config.FourInputDualPedestal){
 	actionsArr.ULRXChanBW = {
 		label: 'Demod Bandwidth',
 		options: [
@@ -225,6 +336,37 @@ instance.prototype.init_actions = function(system) {
 			self.sendCommand(cmd);
 		}
 	};
+}else{
+	actionsArr.ULRXChanBW = {
+		label: 'Demod Bandwidth',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Demodulator bandwidth',
+				id:      'ULRXChanBw',
+				width:   12,
+				default: 'DB_ULRX_CHAN_BW&value=10MHz',
+				choices:	[
+					{ id: 'DB_ULRX_CHAN_BW&value=3MHz',		label: '3MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=4MHz',		label: '4MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=5MHz',		label: '5MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=6MHz',		label: '6MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=7MHz',		label: '7MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=8MHz',		label: '8MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=10MHz',		label: '10MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=12MHz',		label: '12MHz' },
+					{ id: 'DB_ULRX_CHAN_BW&value=Auto',		label: 'Auto' },
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.ULRXChanBw;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+}
 
 	actionsArr.ULRXGuardInt = {
 		label: 'Guard Interval',
@@ -447,9 +589,290 @@ instance.prototype.init_actions = function(system) {
 		  
 	};
 
+	actionsArr.DB_ULRX0_VIDEO_FORMAT_MODE = {
+		label: 'Decoder1 video format mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder1 video format mode',
+				id:      'DB_ULRX0_VIDEO_FORMAT_MODE',
+				width:   12,
+				default: 'DB_ULRX0_VIDEO_FORMAT_MODE&value=Auto',
+				choices:	[
+					{ id: 'DB_ULRX0_VIDEO_FORMAT_MODE&value=Auto',		label: 'Auto' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT_MODE&value=Manual',		label: 'Manual' },
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_VIDEO_FORMAT_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+	if(this.config.uhd){
+
+	actionsArr.DB_ULRX0_VIDEO_FORMAT = {
+		label: 'Decoder1 video format',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder1 video format',
+				id:      'DB_ULRX0_VIDEO_FORMAT',
+				width:   12,
+				default: 'DB_ULRX0_VIDEO_FORMAT&value=1080i50',
+				choices:	[
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=480i59',		label: '480i59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=576i50',		label: '576i50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=720p50',		label: '720p50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=720p59',		label: '720p59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=720p60',		label: '720p60' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080i50',		label: '1080i50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080i59',		label: '1080i59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080i60',		label: '1080i60' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p23',		label: '1080p23' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p24',		label: '1080p24' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p25',		label: '1080p25' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p29',		label: '1080p29' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p30',		label: '1080p30' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF23',		label: '1080PsF23' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF24',		label: '1080PsF24' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF25',		label: '1080PsF25' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF29',		label: '1080PsF29' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF30',		label: '1080PsF30' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p50',		label: '1080p50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p59',		label: '1080p59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p60',		label: '1080p60' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp23',		label: 'UHDp23' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp24',		label: 'UHDp24' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp25',		label: 'UHDp25' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp29',		label: 'UHDp29' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp30',		label: 'UHDp30' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp50',		label: 'UHDp50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp59',		label: 'UHDp59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp60',		label: 'UHDp60' },
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_VIDEO_FORMAT;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+}else{
+	actionsArr.DB_ULRX0_VIDEO_FORMAT = {
+		label: 'Decoder1 video format',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder1 video format',
+				id:      'DB_ULRX0_VIDEO_FORMAT',
+				width:   12,
+				default: 'DB_ULRX0_VIDEO_FORMAT&value=1080i50',
+				choices:	[
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=480i59',		label: '480i59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=576i50',		label: '576i50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=720p50',		label: '720p50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=720p59',		label: '720p59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=720p60',		label: '720p60' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080i50',		label: '1080i50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080i59',		label: '1080i59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080i60',		label: '1080i60' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p23',		label: '1080p23' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p24',		label: '1080p24' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p25',		label: '1080p25' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p29',		label: '1080p29' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p30',		label: '1080p30' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF23',		label: '1080PsF23' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF24',		label: '1080PsF24' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF25',		label: '1080PsF25' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF29',		label: '1080PsF29' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080PsF30',		label: '1080PsF30' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p50',		label: '1080p50' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p59',		label: '1080p59' },
+					{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p60',		label: '1080p60' },
+					
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_VIDEO_FORMAT;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+}
+
+actionsArr.DB_ULRX0_VIDEO_DELAY_MODE = {
+	label: 'Decoder1 video delay mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose Decoder1 video delay mode',
+			id:      'DB_ULRX0_VIDEO_DELAY_MODE',
+			width:   12,
+			default: 'DB_ULRX0_VIDEO_DELAY_MODE&value=Low',
+			choices:	[
+				{ id: 'DB_ULRX0_VIDEO_DELAY_MODE&value=Standard',		label: 'Standard' },
+				{ id: 'DB_ULRX0_VIDEO_DELAY_MODE&value=Low',		label: 'Low' },
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_VIDEO_DELAY_MODE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+//Second Decoder. Copied settings from Decoder0
+if(this.config.DualDecode){
+	actionsArr.DB_ULRX1_VIDEO_FORMAT_MODE = {
+		label: 'Decoder2 video format mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder2 video format mode',
+				id:      'DB_ULRX1_VIDEO_FORMAT_MODE',
+				width:   12,
+				default: 'DB_ULRX1_VIDEO_FORMAT_MODE&value=Auto',
+				choices:	[
+					{ id: 'DB_ULRX1_VIDEO_FORMAT_MODE&value=Auto',		label: 'Auto' },
+					{ id: 'DB_ULRX1_VIDEO_FORMAT_MODE&value=Manual',		label: 'Manual' },
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_VIDEO_FORMAT_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	if(this.config.uhd){
+
+		actionsArr.DB_ULRX1_VIDEO_FORMAT = {
+			label: 'Decoder2 video format',
+			options: [
+				{
+					type:    'dropdown',
+					label:   'Choose Decoder2 video format',
+					id:      'DB_ULRX1_VIDEO_FORMAT',
+					width:   12,
+					default: 'DB_ULRX1_VIDEO_FORMAT&value=1080i50',
+					choices:	[
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=480i59',		label: '480i59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=576i50',		label: '576i50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=720p50',		label: '720p50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=720p59',		label: '720p59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=720p60',		label: '720p60' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080i50',		label: '1080i50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080i59',		label: '1080i59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080i60',		label: '1080i60' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p23',		label: '1080p23' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p24',		label: '1080p24' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p25',		label: '1080p25' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p29',		label: '1080p29' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p30',		label: '1080p30' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF23',		label: '1080PsF23' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF24',		label: '1080PsF24' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF25',		label: '1080PsF25' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF29',		label: '1080PsF29' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF30',		label: '1080PsF30' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p50',		label: '1080p50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p59',		label: '1080p59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p60',		label: '1080p60' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp23',		label: 'UHDp23' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp24',		label: 'UHDp24' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp25',		label: 'UHDp25' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp29',		label: 'UHDp29' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp30',		label: 'UHDp30' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp50',		label: 'UHDp50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp59',		label: 'UHDp59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp60',		label: 'UHDp60' },
+						
+					]
+				},
+			],
+			callback: function(action, bank) {
+				let cmd = action.options.DB_ULRX1_VIDEO_FORMAT;
+				self.log('debug', 'CMD Send: ' + cmd);
+				self.sendCommand(cmd);
+			}
+		};
+	}else{
+		actionsArr.DB_ULRX1_VIDEO_FORMAT = {
+			label: 'Decoder2 video format',
+			options: [
+				{
+					type:    'dropdown',
+					label:   'Choose Decoder2 video format',
+					id:      'DB_ULRX1_VIDEO_FORMAT',
+					width:   12,
+					default: 'DB_ULRX1_VIDEO_FORMAT&value=1080i50',
+					choices:	[
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=480i59',		label: '480i59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=576i50',		label: '576i50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=720p50',		label: '720p50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=720p59',		label: '720p59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=720p60',		label: '720p60' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080i50',		label: '1080i50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080i59',		label: '1080i59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080i60',		label: '1080i60' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p23',		label: '1080p23' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p24',		label: '1080p24' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p25',		label: '1080p25' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p29',		label: '1080p29' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p30',		label: '1080p30' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF23',		label: '1080PsF23' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF24',		label: '1080PsF24' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF25',		label: '1080PsF25' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF29',		label: '1080PsF29' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080PsF30',		label: '1080PsF30' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p50',		label: '1080p50' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p59',		label: '1080p59' },
+						{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p60',		label: '1080p60' },
+						
+						
+					]
+				},
+			],
+			callback: function(action, bank) {
+				let cmd = action.options.DB_ULRX1_VIDEO_FORMAT;
+				self.log('debug', 'CMD Send: ' + cmd);
+				self.sendCommand(cmd);
+			}
+		};
+	}
+	actionsArr.DB_ULRX1_VIDEO_DELAY_MODE = {
+		label: 'Decoder2 video delay mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder2 video delay mode',
+				id:      'DB_ULRX1_VIDEO_DELAY_MODE',
+				width:   12,
+				default: 'DB_ULRX1_VIDEO_DELAY_MODE&value=Low',
+				choices:	[
+					{ id: 'DB_ULRX1_VIDEO_DELAY_MODE&value=Standard',		label: 'Standard' },
+					{ id: 'DB_ULRX1_VIDEO_DELAY_MODE&value=Low',		label: 'Low' },
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_VIDEO_DELAY_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
 
 
 
+
+}
 
 
 	self.setActions(actionsArr);
