@@ -1,12 +1,29 @@
 ## Vislink ULRX-LD Module
 
 Module to control an Vislink ULRX-LD receiver & demodulator.
+Filtering for licencable functions is available in the module configuration.
 
 **Available commands**
 
+* Routing / ASI1 Output (Encoder Input)
+* Routing / ASI2 Output (Ext Asi Output)
 * Demodulator / Frequency
 * Demodulator / Demod Type
 * Demodulator / Bandwidth
 * Demodulator / Guard Interval
 * Demodulator / Polarity
-* Routing / ASI1 Output (Encoder Input!)
+* Demodulator / Downconverter
+* Demodulator / LNB Power 1-4
+* FOR BOTH DEC01 + DEC02:
+* Decoder / Video format mode
+* Decoder / Format
+* Decoder / Delay
+* Decoder / Video PTS offset
+* Decoder / Audio PTS offset
+* Decoder / Monitor output
+* Decoder / OSD enable
+* Decoder / OSD PID
+* Decoder / Video loss
+* Decoder / HDR mode
+* Decoder / Breakup duration
+

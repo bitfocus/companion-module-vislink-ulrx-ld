@@ -729,7 +729,226 @@ actionsArr.DB_ULRX0_VIDEO_DELAY_MODE = {
 	}
 };
 
-//Second Decoder. Copied settings from Decoder0
+
+actionsArr.DB_ULRX0_VIDEO_PTS_OFFSET = {
+
+		
+	label: 'Decoder1 Video PTS offset',
+	options: [
+		{
+				type:    'number',
+				label:   'Offset (-450000 - 200)',
+				id:      'videoptsoffset',
+				min: -450000,
+				max: 200,
+				step: 1,
+				default: 0,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_VIDEO_PTS_OFFSET&value=' + action.options.videoptsoffset;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+actionsArr.DB_ULRX0_AUDIO_PTS_OFFSET = {
+
+		
+	label: 'Decoder1 Audio PTS offset',
+	options: [
+		{
+				type:    'number',
+				label:   'Offset (-450000 - 200)',
+				id:      'audioptsoffset',
+				min: -450000,
+				max: 200,
+				step: 1,
+				default: 0,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_AUDIO_PTS_OFFSET&value=' + action.options.audioptsoffset;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+
+actionsArr.DB_ULRX0_MONITOR_OUTPUT = {
+	label: 'Decoder1 Monitor Output',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose Decoder1 monitori output',
+			id:      'DB_ULRX0_MONITOR_OUTPUT',
+			width:   12,
+			default: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI (decoder 1)',
+			choices:	[
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=ASI',		label: 'ASI' },
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI (decoder 1)',		label: 'SDI (decoder 1)' },
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI (decoder 2)',		label: 'SDI (decoder 2)' },
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-top left',		label: 'SDI-top left' },
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-top right',		label: 'SDI-top right' },
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-bottom left',		label: 'SDI-bottom left' },
+				{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-bottom right',		label: 'SDI-bottom right' },
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_MONITOR_OUTPUT;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+actionsArr.DB_ULRX0_OSD_ENABLE = {
+
+		
+	label: 'Decoder 1 Monitor Out OSD Enable',
+	options: [
+		{
+			type: 'checkbox',
+			label: 'Enable OSD on Mon out Dec1',
+			id: 'DB_ULRX0_OSD_ENABLE',
+			default: true
+		}, 
+		
+		
+	],
+
+	callback: function(action, bank) {
+
+		if(action.options.DB_ULRX0_OSD_ENABLE){
+			let cmd = 'DB_ULRX0_OSD_ENABLE&value=On';
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}else{
+			let cmd = 'DB_ULRX0_OSD_ENABLE&value=Off';
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}		
+	}
+	  
+};
+
+actionsArr.DB_ULRX0_OSD_PID = {
+
+		
+	label: 'Decoder1 OSD PID',
+	options: [
+		{
+				type:    'number',
+				label:   'OSD PID (0 - 8190)',
+				id:      'dec1osdpid',
+				min: 0,
+				max: 8190,
+				step: 1,
+				default: 8000,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_OSD_PID&value=' + action.options.dec1osdpid;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+actionsArr.DB_ULRX0_VIDEO_LOSS = {
+	label: 'Decoder1 Video loss action',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose Decoder1 video loss action',
+			id:      'DB_ULRX0_VIDEO_LOSS',
+			width:   12,
+			default: 'DB_ULRX0_VIDEO_LOSS&value=Freeze',
+			choices:	[
+				{ id: 'DB_ULRX0_VIDEO_LOSS&value=Blue',		label: 'Blue' },
+				{ id: 'DB_ULRX0_VIDEO_LOSS&value=Freeze',		label: 'Freeze' },
+				{ id: 'DB_ULRX0_VIDEO_LOSS&value=Black',		label: 'Black' },
+				{ id: 'DB_ULRX0_VIDEO_LOSS&value=Bars',		label: 'Bars' },
+				
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_VIDEO_LOSS;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+actionsArr.DB_ULRX0_HDR_MODE = {
+	label: 'Decoder1 HDR mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose Decoder1 HDR mode',
+			id:      'DB_ULRX0_HDR_MODE',
+			width:   12,
+			default: 'DB_ULRX0_HDR_MODE&value=Off',
+			choices:	[
+				{ id: 'DB_ULRX0_HDR_MODE&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_HDR_MODE&value=On',		label: 'On' },
+				{ id: 'DB_ULRX0_HDR_MODE&value=Auto',		label: 'Auto' },				
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_HDR_MODE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_BREAKUP_DURATION = {
+
+		
+	label: 'Decoder1 Breakup duration',
+	options: [
+		{
+				type:    'number',
+				label:   'Breakup duration in ms(0 - 10000)',
+				id:      'dec1breakupduration',
+				min: 0,
+				max: 10000,
+				step: 1,
+				default: 3000,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_BREAKUP_DURATION&value=' + action.options.dec1breakupduration;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+
+
+
+
+/////////////////////////////////////////////////
+//Second Decoder. Copied settings from Decoder0//
+/////////////////////////////////////////////////
 if(this.config.DualDecode){
 	actionsArr.DB_ULRX1_VIDEO_FORMAT_MODE = {
 		label: 'Decoder2 video format mode',
@@ -868,6 +1087,217 @@ if(this.config.DualDecode){
 			self.sendCommand(cmd);
 		}
 	};
+
+	actionsArr.DB_ULRX1_VIDEO_PTS_OFFSET = {
+
+		
+		label: 'Decoder2 Video PTS offset',
+		options: [
+			{
+					type:    'number',
+					label:   'Offset (-450000 - 200)',
+					id:      'videoptsoffset',
+					min: -450000,
+					max: 200,
+					step: 1,
+					default: 0,
+					required: true,
+					range: false,
+			}
+		],
+	
+		callback: function(action, bank) {
+			let cmd = 'DB_ULRX1_VIDEO_PTS_OFFSET&value=' + action.options.videoptsoffset;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+		  
+	};
+
+	actionsArr.DB_ULRX1_AUDIO_PTS_OFFSET = {
+
+		
+		label: 'Decoder2 Audio PTS offset',
+		options: [
+			{
+					type:    'number',
+					label:   'Offset (-450000 - 200)',
+					id:      'audioptsoffset',
+					min: -450000,
+					max: 200,
+					step: 1,
+					default: 0,
+					required: true,
+					range: false,
+			}
+		],
+	
+		callback: function(action, bank) {
+			let cmd = 'DB_ULRX1_AUDIO_PTS_OFFSET&value=' + action.options.audioptsoffset;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+		  
+	};
+
+	actionsArr.DB_ULRX1_MONITOR_OUTPUT = {
+		label: 'Decoder2 Monitor Output',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder2 monitori output',
+				id:      'DB_ULRX1_MONITOR_OUTPUT',
+				width:   12,
+				default: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI (decoder 1)',
+				choices:	[
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=ASI',		label: 'ASI' },
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI (decoder 1)',		label: 'SDI (decoder 1)' },
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI (decoder 2)',		label: 'SDI (decoder 2)' },
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-top left',		label: 'SDI-top left' },
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-top right',		label: 'SDI-top right' },
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-bottom left',		label: 'SDI-bottom left' },
+					{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-bottom right',		label: 'SDI-bottom right' },
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_MONITOR_OUTPUT;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+	actionsArr.DB_ULRX1_OSD_ENABLE = {
+
+		
+		label: 'Decoder 2 Monitor Out OSD Enable',
+		options: [
+			{
+				type: 'checkbox',
+				label: 'Enable OSD on Mon out Dec2',
+				id: 'DB_ULRX01_OSD_ENABLE',
+				default: true
+			}, 
+			
+			
+		],
+	
+		callback: function(action, bank) {
+	
+			if(action.options.DB_ULRX1_OSD_ENABLE){
+				let cmd = 'DB_ULRX1_OSD_ENABLE&value=On';
+				self.log('debug', 'CMD Send: ' + cmd);
+				self.sendCommand(cmd);
+			}else{
+				let cmd = 'DB_ULRX1_OSD_ENABLE&value=Off';
+				self.log('debug', 'CMD Send: ' + cmd);
+				self.sendCommand(cmd);
+			}		
+		}
+		  
+	};
+	actionsArr.DB_ULRX1_OSD_PID = {
+
+		
+		label: 'Decoder2 OSD PID',
+		options: [
+			{
+					type:    'number',
+					label:   'OSD PID (0 - 8190)',
+					id:      'dec2osdpid',
+					min: 0,
+					max: 8190,
+					step: 1,
+					default: 8000,
+					required: true,
+					range: false,
+			}
+		],
+	
+		callback: function(action, bank) {
+			let cmd = 'DB_ULRX1_OSD_PID&value=' + action.options.dec2osdpid;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+		  
+	};
+	actionsArr.DB_ULRX1_VIDEO_LOSS = {
+		label: 'Decoder2 Video loss action',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder2 video loss action',
+				id:      'DB_ULRX1_VIDEO_LOSS',
+				width:   12,
+				default: 'DB_ULRX1_VIDEO_LOSS&value=Freeze',
+				choices:	[
+					{ id: 'DB_ULRX1_VIDEO_LOSS&value=Blue',		label: 'Blue' },
+					{ id: 'DB_ULRX1_VIDEO_LOSS&value=Freeze',		label: 'Freeze' },
+					{ id: 'DB_ULRX1_VIDEO_LOSS&value=Black',		label: 'Black' },
+					{ id: 'DB_ULRX1_VIDEO_LOSS&value=Bars',		label: 'Bars' },
+					
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_VIDEO_LOSS;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+	actionsArr.DB_ULRX1_HDR_MODE = {
+		label: 'Decoder2 HDR mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder2 HDR mode',
+				id:      'DB_ULRX1_HDR_MODE',
+				width:   12,
+				default: 'DB_ULRX1_HDR_MODE&value=Off',
+				choices:	[
+					{ id: 'DB_ULRX1_HDR_MODE&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_HDR_MODE&value=On',		label: 'On' },
+					{ id: 'DB_ULRX1_HDR_MODE&value=Auto',		label: 'Auto' },				
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_HDR_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+	actionsArr.DB_ULRX1_BREAKUP_DURATION = {
+
+		
+		label: 'Decoder2 Breakup duration',
+		options: [
+			{
+					type:    'number',
+					label:   'Breakup duration in ms(0 - 10000)',
+					id:      'dec2breakupduration',
+					min: 0,
+					max: 10000,
+					step: 1,
+					default: 3000,
+					required: true,
+					range: false,
+			}
+		],
+	
+		callback: function(action, bank) {
+			let cmd = 'DB_ULRX1_BREAKUP_DURATION&value=' + action.options.dec2breakupduration;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+		  
+	};
+
 
 
 
