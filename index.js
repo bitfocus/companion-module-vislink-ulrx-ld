@@ -253,15 +253,22 @@ if(this.config.Diversity){
 
 	
 
+
 	actionsArr.ULRXFrequency = {
 
 		
 		label: 'Demod Frequency',
 		options: [
 			{
-					type:    'textinput',
-					label:   'Frequency (GHz, example: 2.45)',
-					id:      'frequency'
+					type:    'number',
+					label:   'Frequency GHz (0.0000 - 12.0000)',
+					id:      'frequency',
+					min: 0,
+					max: 12,
+					step: 0.000001,
+					default: 2.1,
+					required: true,
+					range: false,
 			}
 		],
 	
