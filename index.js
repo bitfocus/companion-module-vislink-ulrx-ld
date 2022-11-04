@@ -1670,7 +1670,7 @@ actionsArr.DB_P17101_USER_DATA_PID = {
 				min: 32,
 				max: 8190,
 				step: 1,
-				default: 0,
+				default: 101,
 				required: true,
 				range: false,
 		}
