@@ -949,7 +949,215 @@ actionsArr.DB_ULRX0_BREAKUP_DURATION = {
 	  
 };
 
+actionsArr.DB_ULRX0_SERVICE_SELECT_MODE = {
+	label: 'Decoder1 Service selection',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose Decoder1 Service selection',
+			id:      'DB_ULRX0_SERVICE_SELECT_MODE',
+			width:   12,
+			default: 'DB_ULRX0_SERVICE_SELECT_MODE&value=Prog Num',
+			choices:	[
+				{ id: 'DB_ULRX0_SERVICE_SELECT_MODE&value=Prog Num',		label: 'Prog Num' },
+				{ id: 'DB_ULRX0_SERVICE_SELECT_MODE&value=PIDs',		label: 'PIDs' },			
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_SERVICE_SELECT_MODE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
 
+actionsArr.DB_ULRX0_PROGRAM_NUMBER = {
+
+		
+	label: 'Decoder1 Program Number',
+	options: [
+		{
+				type:    'number',
+				label:   'Program number(0 - 65535)',
+				id:      'dec1programnumber',
+				min: 0,
+				max: 65535,
+				step: 1,
+				default: 0,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_PROGRAM_NUMBER&value=' + action.options.dec1programnumber;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+actionsArr.DB_ULRX0_PIDs = {
+
+		
+	label: 'Decoder1 PIDs',
+	options: [
+		{
+				type:    'number',
+				label:   'Video PID (32-8190)',
+				id:      'DB_ULRX0_VIDEO_PID',
+				min: 32,
+				max: 8190,
+				step: 1,
+				default: 100,
+				required: true,
+				range: false,
+		},
+		{
+			type:    'number',
+			label:   'PCR PID (32-8190)',
+			id:      'DB_ULRX0_PCR_PID',
+			min: 32,
+			max: 8190,
+			step: 1,
+			default: 257,
+			required: true,
+			range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 1 PID (32-8190)',
+		id:      'DB_ULRX0_AUDIO_PID0',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 200,
+		required: true,
+		range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 2 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID1',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 201,
+	required: true,
+	range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 3 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID2',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 202,
+	required: true,
+	range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 4 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID3',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 203,
+	required: true,
+	range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 5 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID4',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 204,
+	required: true,
+	range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 6 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID5',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 205,
+	required: true,
+	range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 7 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID6',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 206,
+	required: true,
+	range: false,
+},
+{
+	type:    'number',
+	label:   'Audio 8 PID (32-8190)',
+	id:      'DB_ULRX0_AUDIO_PID7',
+	min: 32,
+	max: 8190,
+	step: 1,
+	default: 207,
+	required: true,
+	range: false,
+}
+	],
+
+	callback: function(action, bank) {
+		let videoPid = 'DB_ULRX0_VIDEO_PID&value=' + action.options.DB_ULRX0_VIDEO_PID;
+		self.log('debug', 'CMD Send: ' + videoPid);
+		self.sendCommand(videoPid);
+
+		let pcrPid = 'DB_ULRX0_PCR_PID&value=' + action.options.DB_ULRX0_PCR_PID;
+		self.log('debug', 'CMD Send: ' + pcrPid);
+		self.sendCommand(pcrPid);
+
+		let audio1PID = 'DB_ULRX0_AUDIO_PID0&value=' + action.options.DB_ULRX0_AUDIO_PID0;
+		self.log('debug', 'CMD Send: ' + audio1PID);
+		self.sendCommand(audio1PID);
+
+		let audio2PID = 'DB_ULRX0_AUDIO_PID1&value=' + action.options.DB_ULRX0_AUDIO_PID1;
+		self.log('debug', 'CMD Send: ' + audio2PID);
+		self.sendCommand(audio2PID);
+
+		let audio3PID = 'DB_ULRX0_AUDIO_PID2&value=' + action.options.DB_ULRX0_AUDIO_PID2;
+		self.log('debug', 'CMD Send: ' + audio3PID);
+		self.sendCommand(audio3PID);
+
+		let audio4PID = 'DB_ULRX0_AUDIO_PID3&value=' + action.options.DB_ULRX0_AUDIO_PID3;
+		self.log('debug', 'CMD Send: ' + audio4PID);
+		self.sendCommand(audio4PID);
+
+		let audio5PID = 'DB_ULRX0_AUDIO_PID4&value=' + action.options.DB_ULRX0_AUDIO_PID4;
+		self.log('debug', 'CMD Send: ' + audio5PID);
+		self.sendCommand(audio5PID);
+
+		let audio6PID = 'DB_ULRX0_AUDIO_PID5&value=' + action.options.DB_ULRX0_AUDIO_PID5;
+		self.log('debug', 'CMD Send: ' + audio6PID);
+		self.sendCommand(audio6PID);
+
+		let audio7PID = 'DB_ULRX0_AUDIO_PID6&value=' + action.options.DB_ULRX0_AUDIO_PID6;
+		self.log('debug', 'CMD Send: ' + audio7PID);
+		self.sendCommand(audio7PID);
+
+		let audio8PID = 'DB_ULRX0_AUDIO_PID7&value=' + action.options.DB_ULRX0_AUDIO_PID7;
+		self.log('debug', 'CMD Send: ' + audio8PID);
+		self.sendCommand(audio8PID);
+	}
+	  
+};
 
 
 
@@ -1304,6 +1512,218 @@ if(this.config.DualDecode){
 		}
 		  
 	};
+
+	actionsArr.DB_ULRX1_SERVICE_SELECT_MODE = {
+		label: 'Decoder2 Service selection',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder2 Service selection',
+				id:      'DB_ULRX1_SERVICE_SELECT_MODE',
+				width:   12,
+				default: 'DB_ULRX1_SERVICE_SELECT_MODE&value=Prog Num',
+				choices:	[
+					{ id: 'DB_ULRX1_SERVICE_SELECT_MODE&value=Prog Num',		label: 'Prog Num' },
+					{ id: 'DB_ULRX1_SERVICE_SELECT_MODE&value=PIDs',		label: 'PIDs' },			
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_SERVICE_SELECT_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+	actionsArr.DB_ULRX1_PROGRAM_NUMBER = {
+
+		
+		label: 'Decoder2 Program Number',
+		options: [
+			{
+					type:    'number',
+					label:   'Program number(0 - 65535)',
+					id:      'dec2programnumber',
+					min: 0,
+					max: 65535,
+					step: 1,
+					default: 0,
+					required: true,
+					range: false,
+			}
+		],
+	
+		callback: function(action, bank) {
+			let cmd = 'DB_ULRX1_PROGRAM_NUMBER&value=' + action.options.dec2programnumber;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+		  
+	};
+
+	actionsArr.DB_ULRX1_PIDs = {
+
+		
+		label: 'Decoder2 PIDs',
+		options: [
+			{
+					type:    'number',
+					label:   'Video PID (32-8190)',
+					id:      'DB_ULRX1_VIDEO_PID',
+					min: 32,
+					max: 8190,
+					step: 1,
+					default: 100,
+					required: true,
+					range: false,
+			},
+			{
+				type:    'number',
+				label:   'PCR PID (32-8190)',
+				id:      'DB_ULRX1_PCR_PID',
+				min: 32,
+				max: 8190,
+				step: 1,
+				default: 257,
+				required: true,
+				range: false,
+		},
+		{
+			type:    'number',
+			label:   'Audio 1 PID (32-8190)',
+			id:      'DB_ULRX1_AUDIO_PID0',
+			min: 32,
+			max: 8190,
+			step: 1,
+			default: 200,
+			required: true,
+			range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 2 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID1',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 201,
+		required: true,
+		range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 3 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID2',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 202,
+		required: true,
+		range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 4 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID3',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 203,
+		required: true,
+		range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 5 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID4',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 204,
+		required: true,
+		range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 6 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID5',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 205,
+		required: true,
+		range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 7 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID6',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 206,
+		required: true,
+		range: false,
+	},
+	{
+		type:    'number',
+		label:   'Audio 8 PID (32-8190)',
+		id:      'DB_ULRX1_AUDIO_PID7',
+		min: 32,
+		max: 8190,
+		step: 1,
+		default: 207,
+		required: true,
+		range: false,
+	}
+		],
+	
+		callback: function(action, bank) {
+			let videoPid = 'DB_ULRX1_VIDEO_PID&value=' + action.options.DB_ULRX1_VIDEO_PID;
+			self.log('debug', 'CMD Send: ' + videoPid);
+			self.sendCommand(videoPid);
+	
+			let pcrPid = 'DB_ULRX1_PCR_PID&value=' + action.options.DB_ULRX1_PCR_PID;
+			self.log('debug', 'CMD Send: ' + pcrPid);
+			self.sendCommand(pcrPid);
+	
+			let audio1PID = 'DB_ULRX1_AUDIO_PID0&value=' + action.options.DB_ULRX1_AUDIO_PID0;
+			self.log('debug', 'CMD Send: ' + audio1PID);
+			self.sendCommand(audio1PID);
+	
+			let audio2PID = 'DB_ULRX1_AUDIO_PID1&value=' + action.options.DB_ULRX1_AUDIO_PID1;
+			self.log('debug', 'CMD Send: ' + audio2PID);
+			self.sendCommand(audio2PID);
+	
+			let audio3PID = 'DB_ULRX1_AUDIO_PID2&value=' + action.options.DB_ULRX1_AUDIO_PID2;
+			self.log('debug', 'CMD Send: ' + audio3PID);
+			self.sendCommand(audio3PID);
+	
+			let audio4PID = 'DB_ULRX1_AUDIO_PID3&value=' + action.options.DB_ULRX1_AUDIO_PID3;
+			self.log('debug', 'CMD Send: ' + audio4PID);
+			self.sendCommand(audio4PID);
+	
+			let audio5PID = 'DB_ULRX1_AUDIO_PID4&value=' + action.options.DB_ULRX1_AUDIO_PID4;
+			self.log('debug', 'CMD Send: ' + audio5PID);
+			self.sendCommand(audio5PID);
+	
+			let audio6PID = 'DB_ULRX1_AUDIO_PID5&value=' + action.options.DB_ULRX1_AUDIO_PID5;
+			self.log('debug', 'CMD Send: ' + audio6PID);
+			self.sendCommand(audio6PID);
+	
+			let audio7PID = 'DB_ULRX1_AUDIO_PID6&value=' + action.options.DB_ULRX1_AUDIO_PID6;
+			self.log('debug', 'CMD Send: ' + audio7PID);
+			self.sendCommand(audio7PID);
+	
+			let audio8PID = 'DB_ULRX1_AUDIO_PID7&value=' + action.options.DB_ULRX1_AUDIO_PID7;
+			self.log('debug', 'CMD Send: ' + audio8PID);
+			self.sendCommand(audio8PID);
+		}
+		  
+	};
+
+
 
 
 
