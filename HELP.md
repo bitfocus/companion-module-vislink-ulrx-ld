@@ -20,6 +20,7 @@ Unit Build V7013
 * FOR BOTH DEC01 + DEC02:
 * Decoder / Video encoding change (only in H264 licenced mode)
 * Decoder / Video format mode
+* Decoder / 4K Output mode 
 * Decoder / Format
 * Decoder / Delay
 * Decoder / Video PTS offset

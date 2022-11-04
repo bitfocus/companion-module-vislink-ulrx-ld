@@ -596,7 +596,7 @@ if(this.config.Diversity){
 		  
 	};
 
-if(this.config.h264){
+if(this.config.H264){
 
 
 	actionsArr.DB_ULRX0_VIDEO_ENCODING = {
@@ -699,6 +699,32 @@ if(this.config.h264){
 			self.sendCommand(cmd);
 		}
 	};
+
+	actionsArr.DB_ULRX0_OUTPUT_FORMAT = {
+		label: 'Decoder 1 4K output mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Decoder 1 4K output mode',
+				id:      'DB_ULRX0_OUTPUT_FORMAT',
+				width:   12,
+				default: 'DB_ULRX0_OUTPUT_FORMAT&value=2SI',
+				choices:	[
+					{ id: 'DB_ULRX0_OUTPUT_FORMAT&value=2SI',		label: '2SI' },
+					{ id: 'DB_ULRX0_OUTPUT_FORMAT&value=Quad Split',		label: 'Quad Split' },
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_OUTPUT_FORMAT;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+
+
 }else{
 	actionsArr.DB_ULRX0_VIDEO_FORMAT = {
 		label: 'Decoder1 video format',
@@ -1731,7 +1757,7 @@ actionsArr.DB_P17101_USER_DATA_PID = {
 /////////////////////////////////////////////////
 if(this.config.DualDecode){
 
-	if(this.config.h264){
+	if(this.config.H264){
 
 
 		actionsArr.DB_ULRX1_VIDEO_ENCODING = {
