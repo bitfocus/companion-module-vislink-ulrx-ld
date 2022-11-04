@@ -26,4 +26,13 @@ Filtering for licencable functions is available in the module configuration.
 * Decoder / Video loss
 * Decoder / HDR mode
 * Decoder / Breakup duration
+* Decoder / Service selection
+* Decoder / Program number
+* Decoder / PIDs
+* Decoder / Audio select (Auto, manual)
+* Decoder / Audio 1-8 mode
+* Decoder / Analog source
+* Decoder / Audio out levels right, left
+* Decoder / Descrambling type
+* Decoder / BISS Keys
 

@@ -1159,6 +1159,428 @@ actionsArr.DB_ULRX0_PIDs = {
 	  
 };
 
+actionsArr.DB_ULRX0_AUTO_ENCODER_MODE = {
+	label: 'Decoder1 Audio selection',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Decoder 1 Audio select',
+			id:      'DB_ULRX0_AUTO_ENCODER_MODE',
+			width:   12,
+			default: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Auto',
+			choices:	[
+				{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Auto',		label: 'Auto' },
+				{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Manual',		label: 'Manual' },
+					
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUTO_ENCODER_MODE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+
+actionsArr.DB_ULRX0_AUTO_ENCODER_MODE = {
+	label: 'Decoder1 Audio selection',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Decoder 1 Audio select',
+			id:      'DB_ULRX0_AUTO_ENCODER_MODE',
+			width:   12,
+			default: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Auto',
+			choices:	[
+				{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Auto',		label: 'Auto' },
+				{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Manual',		label: 'Manual' },
+					
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUTO_ENCODER_MODE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+actionsArr.DB_ULRX0_AUDIO_MODE0 = {
+	label: 'Decoder1 Audio 1 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 1 mode',
+			id:      'DB_ULRX0_AUDIO_MODE0',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE0&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE0&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE0;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE1 = {
+	label: 'Decoder1 Audio 2 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 2 mode',
+			id:      'DB_ULRX0_AUDIO_MODE1',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE1&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE1&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE1;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE2 = {
+	label: 'Decoder1 Audio 3 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 3 mode',
+			id:      'DB_ULRX0_AUDIO_MODE2',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE2&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE2&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE2;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE3 = {
+	label: 'Decoder1 Audio 4 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 4 mode',
+			id:      'DB_ULRX0_AUDIO_MODE3',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE3&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE3&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE3;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE4 = {
+	label: 'Decoder1 Audio 5 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 5 mode',
+			id:      'DB_ULRX0_AUDIO_MODE4',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE4&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE4&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE4;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE5 = {
+	label: 'Decoder1 Audio 6 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 6 mode',
+			id:      'DB_ULRX0_AUDIO_MODE5',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE5&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE5&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE5;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE6 = {
+	label: 'Decoder1 Audio 7 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 7 mode',
+			id:      'DB_ULRX0_AUDIO_MODE6',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE6&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE6&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE6;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+actionsArr.DB_ULRX0_AUDIO_MODE7 = {
+	label: 'Decoder1 Audio 8 mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Audio 8 mode',
+			id:      'DB_ULRX0_AUDIO_MODE7',
+			width:   12,
+			default: 'DB_ULRX0_AUDIO_MODE7&value=MPEG-L1',
+			choices:	[
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=PCM',		label: 'PCM' },			
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=MPEG-L1',		label: 'MPEG-L1' },
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=MPEG-L2',		label: 'MPEG-L2' },
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=AAC-raw ES',		label: 'AAC-raw ES' },
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=AAC-ADTS',		label: 'AAC-ADTS' },
+				{ id: 'DB_ULRX0_AUDIO_MODE7&value=AAC-LATM',		label: 'AAC-LATM' },
+		
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_AUDIO_MODE7;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+
+actionsArr.DB_ULRX0_ANALOGUE_SOURCE = {
+	label: 'Analog source',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Analog audio out source',
+			id:      'DB_ULRX0_ANALOGUE_SOURCE',
+			width:   12,
+			default: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 1',
+			choices:	[
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 1',		label: 'Pair 1' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 2',		label: 'Pair 2' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 3',		label: 'Pair 3' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 4',		label: 'Pair 4' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 5',		label: 'Pair 5' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 6',		label: 'Pair 6' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 7',		label: 'Pair 7' },
+				{ id: 'DB_ULRX0_ANALOGUE_SOURCE&value=Pair 8',		label: 'Pair 8' },
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_ANALOGUE_SOURCE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+actionsArr.DB_ULRX0_AUDIO_LEVEL0 = {
+	label: 'Audio level (Left)',
+	options: [
+		{
+				type:    'number',
+				label:   'Audio level in dB',
+				id:      'DB_ULRX0_AUDIO_LEVEL0',
+				min: -31,
+				max: 0,
+				step: 0.1,
+				default: 0,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_AUDIO_LEVEL0&value=' + action.options.DB_ULRX0_AUDIO_LEVEL0;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+actionsArr.DB_ULRX0_AUDIO_LEVEL1 = {
+	label: 'Audio level (Right)',
+	options: [
+		{
+				type:    'number',
+				label:   'Audio level in dB',
+				id:      'DB_ULRX0_AUDIO_LEVEL1',
+				min: -31,
+				max: 0,
+				step: 0.1,
+				default: 0,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX0_AUDIO_LEVEL1&value=' + action.options.DB_ULRX0_AUDIO_LEVEL1;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+if(this.config.Descrambling){
+
+actionsArr.DB_P17101_SCRAM_TYPE = {
+	label: 'Decoder 1 Descrambling type',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Descrambling Type',
+			id:      'DB_P17101_SCRAM_TYPE',
+			width:   12,
+			default: 'DB_P17101_SCRAM_TYPE&value=Off',
+			choices:	[
+				{ id: 'DB_P17101_SCRAM_TYPE&value=Off',		label: 'Off' },
+				{ id: 'DB_P17101_SCRAM_TYPE&value=BISS-1',		label: 'BISS-1' },
+				{ id: 'DB_P17101_SCRAM_TYPE&value=BISS-E',		label: 'BISS-E' },
+				
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_P17101_SCRAM_TYPE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+actionsArr.DB_ULRX_BISS1_KEY = {
+	label: 'Decoder 1 BISS-1 Key',
+	options: [
+		{
+			type: 'textinput',
+			label: 'BISS-1 Key (12 Characters out of 01234567890ABCDEF*)',
+			id: 'DB_ULRX_BISS1_KEY',
+			default: '000000000000',
+			tooltip: 'BISS-1 Key has always 12 characters',
+			regex: '/^([0-9A-F*]{12})$/'
+		  },
+	],
+	callback: function(action, bank) {
+		let cmd = 'DB_ULRX_BISS1_KEY&value=' + action.options.DB_ULRX_BISS1_KEY;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+actionsArr.DB_ULRX_BISSE_KEYs = {
+	label: 'Decoder 1 BISS-E Keys',
+	options: [
+		{
+			type: 'textinput',
+			label: 'BISS-E Key (16 Characters out of 01234567890ABCDEF*)',
+			id: 'DB_ULRX_BISSE_KEY',
+			default: '0000000000000000',
+			tooltip: 'BISS-E Key has always 16 characters',
+			regex: '/^([0-9A-F*]{16})$/'
+		  },
+		  {
+			type: 'textinput',
+			label: 'BISS-E injected ID (14 Characters out of 01234567890ABCDEF*)',
+			id: 'DB_ULRX_BISS_INJ_ID',
+			default: '00000000000000',
+			tooltip: 'BISS-E injected ID has always 14 characters',
+			regex: '/^([0-9A-F*]{14})$/'
+		  },
+	],
+	callback: function(action, bank) {
+		let BissE = 'DB_ULRX_BISSE_KEY&value=' + action.options.DB_ULRX_BISSE_KEY;
+		self.log('debug', 'CMD Send: ' + BissE);
+		self.sendCommand(BissE);
+
+		let BissEinjectedID = 'DB_ULRX_BISS_INJ_ID&value=' + action.options.DB_ULRX_BISS_INJ_ID;
+		self.log('debug', 'CMD Send: ' + BissEinjectedID);
+		self.sendCommand(BissEinjectedID);
+	}
+};
+
+}
+
+
 
 
 /////////////////////////////////////////////////
@@ -1723,8 +2145,246 @@ if(this.config.DualDecode){
 		  
 	};
 
-
-
+	actionsArr.DB_ULRX1_AUTO_ENCODER_MODE = {
+		label: 'Decoder2 Audio selection',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Decoder 2 Audio select',
+				id:      'DB_ULRX1_AUTO_ENCODER_MODE',
+				width:   12,
+				default: 'DB_ULRX1_AUTO_ENCODER_MODE&value=Auto',
+				choices:	[
+					{ id: 'DB_ULRX1_AUTO_ENCODER_MODE&value=Auto',		label: 'Auto' },
+					{ id: 'DB_ULRX1_AUTO_ENCODER_MODE&value=Manual',		label: 'Manual' },
+						
+					
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUTO_ENCODER_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE0 = {
+		label: 'Decoder2 Audio 1 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 1 mode',
+				id:      'DB_ULRX1_AUDIO_MODE0',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE0&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE0&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE0;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE1 = {
+		label: 'Decoder2 Audio 2 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 2 mode',
+				id:      'DB_ULRX1_AUDIO_MODE1',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE1&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE1&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE1;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE2 = {
+		label: 'Decoder2 Audio 3 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 3 mode',
+				id:      'DB_ULRX1_AUDIO_MODE2',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE2&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE2&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE2;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE3 = {
+		label: 'Decoder2 Audio 4 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 4 mode',
+				id:      'DB_ULRX1_AUDIO_MODE3',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE3&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE3&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE3;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE4 = {
+		label: 'Decoder2 Audio 5 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 5 mode',
+				id:      'DB_ULRX1_AUDIO_MODE4',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE4&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE4&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE4;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE5 = {
+		label: 'Decoder2 Audio 6 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 6 mode',
+				id:      'DB_ULRX1_AUDIO_MODE5',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE5&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE5&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE5;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE6 = {
+		label: 'Decoder2 Audio 7 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 7 mode',
+				id:      'DB_ULRX1_AUDIO_MODE6',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE6&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE6&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE6;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	actionsArr.DB_ULRX1_AUDIO_MODE7 = {
+		label: 'Decoder2 Audio 8 mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Audio 8 mode',
+				id:      'DB_ULRX1_AUDIO_MODE7',
+				width:   12,
+				default: 'DB_ULRX1_AUDIO_MODE7&value=MPEG-L1',
+				choices:	[
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=PCM',		label: 'PCM' },			
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=MPEG-L1',		label: 'MPEG-L1' },
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=MPEG-L2',		label: 'MPEG-L2' },
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=AAC-raw ES',		label: 'AAC-raw ES' },
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=AAC-ADTS',		label: 'AAC-ADTS' },
+					{ id: 'DB_ULRX1_AUDIO_MODE7&value=AAC-LATM',		label: 'AAC-LATM' },
+			
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_AUDIO_MODE7;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+	
 
 
 
