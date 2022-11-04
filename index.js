@@ -1659,6 +1659,43 @@ actionsArr.DB_P17101_USER_DATA_FORMAT = {
 	}
 };
 
+actionsArr.DB_P17101_USER_DATA_RATE = {
+	label: 'User Data Rate (Gigawave Only)',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose User data format',
+			id:      'DB_P17101_USER_DATA_RATE',
+			width:   12,
+			default: 'DB_P17101_USER_DATA_RATE&value=38400',
+			choices:	[
+				{ id: 'DB_P17101_USER_DATA_RATE&value=1200',		label: '1200' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=1800',		label: '1800' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=2400',		label: '2400' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=3600',		label: '3600' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=4800',		label: '4800' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=7200',		label: '7200' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=9600',		label: '9600' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=14400',		label: '14400' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=19200',		label: '19200' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=28800',		label: '28800' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=38400',		label: '38400' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=57600',		label: '57600' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=76800',		label: '76800' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=115200',		label: '115200' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=153600',		label: '153600' },
+				{ id: 'DB_P17101_USER_DATA_RATE&value=230400',		label: '230400' },
+			
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_P17101_USER_DATA_RATE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
 
 actionsArr.DB_P17101_USER_DATA_PID = {
 	label: 'User Data PID',

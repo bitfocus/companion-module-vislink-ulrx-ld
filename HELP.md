@@ -41,5 +41,6 @@ Unit Build V7013
 * Decoder / BISS Keys
 * Decoder / Genlock mode
 * User Data / User Data Format
+* User Data / User Data rate (Gigawave)
 * User Data / User Data PID
 
