@@ -3,6 +3,9 @@
 Module to control an Vislink ULRX-LD receiver & demodulator.
 Filtering for licencable functions is available in the module configuration.
 
+**Vislink Software Version**
+Unit Build V7013
+
 **Available commands**
 
 * Routing / ASI1 Output (Encoder Input)
@@ -35,4 +38,7 @@ Filtering for licencable functions is available in the module configuration.
 * Decoder / Audio out levels right, left
 * Decoder / Descrambling type
 * Decoder / BISS Keys
+* Decoder / Genlock mode
+* User Data / User Data Format
+* User Data / User Data PID
 

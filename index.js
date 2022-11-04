@@ -1581,6 +1581,82 @@ actionsArr.DB_ULRX_BISSE_KEYs = {
 }
 
 
+actionsArr.DB_ULRX0_GENLOCK_MODE = {
+	label: 'Decoder 1 Genlock mode',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Genlock mode',
+			id:      'DB_ULRX0_GENLOCK_MODE',
+			width:   12,
+			default: 'DB_ULRX0_GENLOCK_MODE&value=Off',
+			choices:	[
+				{ id: 'DB_ULRX0_GENLOCK_MODE&value=Off',		label: 'Off' },
+				{ id: 'DB_ULRX0_GENLOCK_MODE&value=External',		label: 'External' },
+				{ id: 'DB_ULRX0_GENLOCK_MODE&value=Internal',		label: 'Internal' },
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_ULRX0_GENLOCK_MODE;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+//Todo: Add settings for Genlock Phase adjustment for each resolution
+
+actionsArr.DB_P17101_USER_DATA_FORMAT = {
+	label: 'User Data Format',
+	options: [
+		{
+			type:    'dropdown',
+			label:   'Choose User data format',
+			id:      'DB_P17101_USER_DATA_FORMAT',
+			width:   12,
+			default: 'DB_P17101_USER_DATA_FORMAT&value=Link',
+			choices:	[
+				{ id: 'DB_P17101_USER_DATA_FORMAT&value=Gigawave',		label: 'Gigawave' },
+				{ id: 'DB_P17101_USER_DATA_FORMAT&value=Onboard',		label: 'Onboard' },
+				{ id: 'DB_P17101_USER_DATA_FORMAT&value=Link',		label: 'Link' },
+			]
+		},
+	],
+	callback: function(action, bank) {
+		let cmd = action.options.DB_P17101_USER_DATA_FORMAT;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+};
+
+
+actionsArr.DB_P17101_USER_DATA_PID = {
+	label: 'User Data PID',
+	options: [
+		{
+				type:    'number',
+				label:   'User data PID',
+				id:      'DB_P17101_USER_DATA_PID',
+				min: 32,
+				max: 8190,
+				step: 1,
+				default: 0,
+				required: true,
+				range: false,
+		}
+	],
+
+	callback: function(action, bank) {
+		let cmd = 'DB_P17101_USER_DATA_PID&value=' + action.options.DB_P17101_USER_DATA_PID;
+		self.log('debug', 'CMD Send: ' + cmd);
+		self.sendCommand(cmd);
+	}
+	  
+};
+
+
+
+
 
 
 /////////////////////////////////////////////////
@@ -2385,9 +2461,30 @@ if(this.config.DualDecode){
 		}
 	};
 	
+	actionsArr.DB_ULRX1_GENLOCK_MODE = {
+		label: 'Decoder 2 Genlock mode',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Genlock mode',
+				id:      'DB_ULRX1GENLOCK_MODE',
+				width:   12,
+				default: 'DB_ULRX1_GENLOCK_MODE&value=Off',
+				choices:	[
+					{ id: 'DB_ULRX1_GENLOCK_MODE&value=Off',		label: 'Off' },
+					{ id: 'DB_ULRX1_GENLOCK_MODE&value=External',		label: 'External' },
+					{ id: 'DB_ULRX1_GENLOCK_MODE&value=Internal',		label: 'Internal' },
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX1_GENLOCK_MODE;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
 
-
-
+//Todo: Add settings for Genlock Phase adjustment for each resolution
 
 }
 
