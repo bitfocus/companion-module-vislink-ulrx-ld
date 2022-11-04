@@ -18,6 +18,7 @@ Unit Build V7013
 * Demodulator / Downconverter
 * Demodulator / LNB Power 1-4
 * FOR BOTH DEC01 + DEC02:
+* Decoder / Video encoding change (only in H264 licenced mode)
 * Decoder / Video format mode
 * Decoder / Format
 * Decoder / Delay

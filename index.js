@@ -596,6 +596,36 @@ if(this.config.Diversity){
 		  
 	};
 
+if(this.config.h264){
+
+
+	actionsArr.DB_ULRX0_VIDEO_ENCODING = {
+		label: 'Decoder1 encoding standard',
+		options: [
+			{
+				type:    'dropdown',
+				label:   'Choose Decoder1 encoding standard',
+				id:      'DB_ULRX0_VIDEO_ENCODING',
+				width:   12,
+				default: 'DB_ULRX0_VIDEO_ENCODING&value=HEVC (H.265) UHD',
+				choices:	[
+					{ id: 'DB_ULRX0_VIDEO_ENCODING&value=MPEG-2',		label: 'MPEG-2' },
+					{ id: 'DB_ULRX0_VIDEO_ENCODING&value=AVC (H.264)',		label: 'AVC (H.264)' },
+					{ id: 'DB_ULRX0_VIDEO_ENCODING&value=HEVC (H.265) UHD',		label: 'HEVC (H.265) UHD' },
+				
+				]
+			},
+		],
+		callback: function(action, bank) {
+			let cmd = action.options.DB_ULRX0_VIDEO_ENCODING;
+			self.log('debug', 'CMD Send: ' + cmd);
+			self.sendCommand(cmd);
+		}
+	};
+
+}
+
+
 	actionsArr.DB_ULRX0_VIDEO_FORMAT_MODE = {
 		label: 'Decoder1 video format mode',
 		options: [
@@ -1663,6 +1693,38 @@ actionsArr.DB_P17101_USER_DATA_PID = {
 //Second Decoder. Copied settings from Decoder0//
 /////////////////////////////////////////////////
 if(this.config.DualDecode){
+
+	if(this.config.h264){
+
+
+		actionsArr.DB_ULRX1_VIDEO_ENCODING = {
+			label: 'Decoder2 encoding standard',
+			options: [
+				{
+					type:    'dropdown',
+					label:   'Choose Decoder2 encoding standard',
+					id:      'DB_ULRX1_VIDEO_ENCODING',
+					width:   12,
+					default: 'DB_ULRX1_VIDEO_ENCODING&value=HEVC (H.265) UHD',
+					choices:	[
+						{ id: 'DB_ULRX1_VIDEO_ENCODING&value=MPEG-2',		label: 'MPEG-2' },
+						{ id: 'DB_ULRX1_VIDEO_ENCODING&value=AVC (H.264)',		label: 'AVC (H.264)' },
+						{ id: 'DB_ULRX1_VIDEO_ENCODING&value=HEVC (H.265) UHD',		label: 'HEVC (H.265) UHD' },
+					
+					]
+				},
+			],
+			callback: function(action, bank) {
+				let cmd = action.options.DB_ULRX1_VIDEO_ENCODING;
+				self.log('debug', 'CMD Send: ' + cmd);
+				self.sendCommand(cmd);
+			}
+		};
+	
+	}
+
+
+
 	actionsArr.DB_ULRX1_VIDEO_FORMAT_MODE = {
 		label: 'Decoder2 video format mode',
 		options: [
