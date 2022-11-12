@@ -1,6 +1,6 @@
 {
 	"name": "vislink-ulrx-ld",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"api_version": "1.0.0",
 	"keywords": [
 		"hcam",
@@ -18,10 +18,12 @@
 		"url": "git+https://github.com/bitfocus/companion-module-vislink-ulrx-ld.git"
 	},
 	"author": "Leopold Strobl <leopold.strobl@vt-media.de>",
-	
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/bitfocus/companion-module-vislink-ulrx-ld/issues"
 	},
-	"homepage": "https://github.com/bitfocus/companion-module-vislink-ulrx-ld#readme"
+	"homepage": "https://github.com/bitfocus/companion-module-vislink-ulrx-ld#readme",
+	"devDependencies": {
+		"prettier": "^2.7.1"
+	}
 }
