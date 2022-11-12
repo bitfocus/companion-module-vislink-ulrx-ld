@@ -457,7 +457,7 @@ instance.prototype.init_actions = function (system) {
 		}
 	};
 
-	actionsArr.ULRXOtherLO = {
+	actionsArr.ULRXLNBPower = {
 		label: 'LNB Power',
 		options: [
 			{
