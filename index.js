@@ -4,7 +4,6 @@ var log;
 
 function instance(system, id, config) {
 	let self = this;
-
 	// super-constructor
 	instance_skel.apply(this, arguments);
 	return self;
@@ -12,23 +11,17 @@ function instance(system, id, config) {
 
 instance.prototype.init = function () {
 	let self = this;
-
 	self.status(self.STATE_OK);
-
 	self.init_actions();
 	self.init_presets();
-
 	debug = self.debug;
 	log = self.log;
 };
 
 instance.prototype.updateConfig = function (config) {
 	let self = this;
-
 	self.status(self.STATE_OK);
-
 	self.config = config;
-
 	self.init_actions();
 	self.init_presets();
 };
