@@ -9,23 +9,11 @@ function addZero(i) {
 	return i;
 }
 
-function renameTimestamp() {
-	let d = new Date();
-	let curr_date = addZero(d.getDate());
-	let curr_month = addZero(d.getMonth() + 1);
-	let curr_year = addZero(d.getFullYear());
-	let h = addZero(d.getHours());
-	let m = addZero(d.getMinutes());
-	let stamp = curr_year + "" + curr_month + "" + curr_date + "_" + h + m;
-	return stamp;
-};
-
 function instance(system, id, config) {
 	let self = this;
 
 	// super-constructor
 	instance_skel.apply(this, arguments);
-
 	return self;
 }
 
@@ -138,20 +126,12 @@ instance.prototype.destroy = function () {
 instance.prototype.init_presets = function () {
 	let self = this;
 	let presets = [];
-
-
-
-
-
-
 	self.setPresetDefinitions(presets);
 }
 
 instance.prototype.init_actions = function (system) {
 	let self = this;
-
 	let actionsArr = {};
-
 
 	if (this.config.Diversity) {
 		actionsArr.ASI1OutputMux = {
@@ -249,14 +229,7 @@ instance.prototype.init_actions = function (system) {
 		};
 	}
 
-
-
-
-
-
 	actionsArr.ULRXFrequency = {
-
-
 		label: 'Demod Frequency',
 		options: [
 			{
@@ -271,13 +244,11 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX_FREQ&value=' + action.options.frequency;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	actionsArr.ULRXRxMode = {
@@ -302,7 +273,6 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
-
 
 	if (this.config.FourInputDualPedestal) {
 		actionsArr.ULRXChanBW = {
@@ -363,7 +333,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX_CHAN_BW&value=10MHz', label: '10MHz' },
 						{ id: 'DB_ULRX_CHAN_BW&value=12MHz', label: '12MHz' },
 						{ id: 'DB_ULRX_CHAN_BW&value=Auto', label: 'Auto' },
-
 					]
 				},
 			],
@@ -390,7 +359,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_P17101_GUARD_INT&value=1/8', label: '1/8' },
 					{ id: 'DB_P17101_GUARD_INT&value=1/4', label: '1/4' },
 					{ id: 'DB_P17101_GUARD_INT&value=Auto', label: 'Auto' },
-
 				]
 			},
 		],
@@ -414,8 +382,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_P17101_SPEC_POL&value=Normal', label: 'Normal' },
 					{ id: 'DB_P17101_SPEC_POL&value=Inverted', label: 'Inverted' },
 					{ id: 'DB_P17101_SPEC_POL&value=Auto', label: 'Auto' },
-
-
 				]
 			},
 		],
@@ -467,8 +433,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX_DOWN_CONVERTER&value=L3025-6368', label: 'L3025-6368' },
 					{ id: 'DB_ULRX_DOWN_CONVERTER&value=Other', label: 'Other' },
 					{ id: 'DB_ULRX_DOWN_CONVERTER&value=None', label: 'None' },
-
-
 				]
 			},
 		],
@@ -480,8 +444,6 @@ instance.prototype.init_actions = function (system) {
 	};
 
 	actionsArr.ULRXOtherLO = {
-
-
 		label: 'Other LO Frequency',
 		options: [
 			{
@@ -498,13 +460,9 @@ instance.prototype.init_actions = function (system) {
 				choices: [
 					{ id: 'DB_P17101_LO_MIX&value=Low side', label: 'Low side' },
 					{ id: 'DB_P17101_LO_MIX&value=High side', label: 'High side' },
-
-
-
 				]
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd1 = 'DB_ULRX_OTHER_LO&value=' + action.options.lofrequency;
 			self.log('debug', 'CMD Send: ' + cmd1);
@@ -513,12 +471,9 @@ instance.prototype.init_actions = function (system) {
 			self.log('debug', 'CMD Send: ' + cmd2);
 			self.sendCommand(cmd2);
 		}
-
 	};
 
 	actionsArr.ULRXOtherLO = {
-
-
 		label: 'LNB Power',
 		options: [
 			{
@@ -527,7 +482,6 @@ instance.prototype.init_actions = function (system) {
 				id: 'lnb1power',
 				default: true
 			},
-
 			{
 				type: 'checkbox',
 				label: 'LNB2 Power',
@@ -546,11 +500,8 @@ instance.prototype.init_actions = function (system) {
 				id: 'lnb4power',
 				default: true
 			},
-
 		],
-
 		callback: function (action, bank) {
-
 			if (action.options.lnb1power) {
 				let cmd = 'DB_P17101_LNB_PWR1&value=On';
 				self.log('debug', 'CMD Send: ' + cmd);
@@ -590,15 +541,10 @@ instance.prototype.init_actions = function (system) {
 				self.log('debug', 'CMD Send: ' + cmd);
 				self.sendCommand(cmd);
 			}
-
-
 		}
-
 	};
 
 	if (this.config.H264) {
-
-
 		actionsArr.DB_ULRX0_VIDEO_ENCODING = {
 			label: 'Decoder1 encoding standard',
 			options: [
@@ -612,7 +558,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX0_VIDEO_ENCODING&value=MPEG-2', label: 'MPEG-2' },
 						{ id: 'DB_ULRX0_VIDEO_ENCODING&value=AVC (H.264)', label: 'AVC (H.264)' },
 						{ id: 'DB_ULRX0_VIDEO_ENCODING&value=HEVC (H.265) UHD', label: 'HEVC (H.265) UHD' },
-
 					]
 				},
 			],
@@ -622,9 +567,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
-
 	}
-
 
 	actionsArr.DB_ULRX0_VIDEO_FORMAT_MODE = {
 		label: 'Decoder1 video format mode',
@@ -649,7 +592,6 @@ instance.prototype.init_actions = function (system) {
 	};
 
 	if (this.config.uhd) {
-
 		actionsArr.DB_ULRX0_VIDEO_FORMAT = {
 			label: 'Decoder1 video format',
 			options: [
@@ -689,7 +631,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp50', label: 'UHDp50' },
 						{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp59', label: 'UHDp59' },
 						{ id: 'DB_ULRX0_VIDEO_FORMAT&value=UHDp60', label: 'UHDp60' },
-
 					]
 				},
 			],
@@ -712,7 +653,6 @@ instance.prototype.init_actions = function (system) {
 					choices: [
 						{ id: 'DB_ULRX0_OUTPUT_FORMAT&value=2SI', label: '2SI' },
 						{ id: 'DB_ULRX0_OUTPUT_FORMAT&value=Quad Split', label: 'Quad Split' },
-
 					]
 				},
 			],
@@ -722,9 +662,6 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
-
-
-
 	} else {
 		actionsArr.DB_ULRX0_VIDEO_FORMAT = {
 			label: 'Decoder1 video format',
@@ -757,8 +694,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p50', label: '1080p50' },
 						{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p59', label: '1080p59' },
 						{ id: 'DB_ULRX0_VIDEO_FORMAT&value=1080p60', label: '1080p60' },
-
-
 					]
 				},
 			],
@@ -792,10 +727,7 @@ instance.prototype.init_actions = function (system) {
 		}
 	};
 
-
 	actionsArr.DB_ULRX0_VIDEO_PTS_OFFSET = {
-
-
 		label: 'Decoder1 Video PTS offset',
 		options: [
 			{
@@ -810,18 +742,14 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_VIDEO_PTS_OFFSET&value=' + action.options.videoptsoffset;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_AUDIO_PTS_OFFSET = {
-
-
 		label: 'Decoder1 Audio PTS offset',
 		options: [
 			{
@@ -836,15 +764,12 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_AUDIO_PTS_OFFSET&value=' + action.options.audioptsoffset;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
-
 
 	actionsArr.DB_ULRX0_MONITOR_OUTPUT = {
 		label: 'Decoder1 Monitor Output',
@@ -863,7 +788,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-top right', label: 'SDI-top right' },
 					{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-bottom left', label: 'SDI-bottom left' },
 					{ id: 'DB_ULRX0_MONITOR_OUTPUT&value=SDI-bottom right', label: 'SDI-bottom right' },
-
 				]
 			},
 		],
@@ -875,8 +799,6 @@ instance.prototype.init_actions = function (system) {
 	};
 
 	actionsArr.DB_ULRX0_OSD_ENABLE = {
-
-
 		label: 'Decoder 1 Monitor Out OSD Enable',
 		options: [
 			{
@@ -885,12 +807,8 @@ instance.prototype.init_actions = function (system) {
 				id: 'DB_ULRX0_OSD_ENABLE',
 				default: true
 			},
-
-
 		],
-
 		callback: function (action, bank) {
-
 			if (action.options.DB_ULRX0_OSD_ENABLE) {
 				let cmd = 'DB_ULRX0_OSD_ENABLE&value=On';
 				self.log('debug', 'CMD Send: ' + cmd);
@@ -901,12 +819,9 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_OSD_PID = {
-
-
 		label: 'Decoder1 OSD PID',
 		options: [
 			{
@@ -921,13 +836,11 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_OSD_PID&value=' + action.options.dec1osdpid;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_VIDEO_LOSS = {
@@ -944,8 +857,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_VIDEO_LOSS&value=Freeze', label: 'Freeze' },
 					{ id: 'DB_ULRX0_VIDEO_LOSS&value=Black', label: 'Black' },
 					{ id: 'DB_ULRX0_VIDEO_LOSS&value=Bars', label: 'Bars' },
-
-
 				]
 			},
 		],
@@ -969,7 +880,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_HDR_MODE&value=Off', label: 'Off' },
 					{ id: 'DB_ULRX0_HDR_MODE&value=On', label: 'On' },
 					{ id: 'DB_ULRX0_HDR_MODE&value=Auto', label: 'Auto' },
-
 				]
 			},
 		],
@@ -979,9 +889,8 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_BREAKUP_DURATION = {
-
-
 		label: 'Decoder1 Breakup duration',
 		options: [
 			{
@@ -996,13 +905,11 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_BREAKUP_DURATION&value=' + action.options.dec1breakupduration;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_SERVICE_SELECT_MODE = {
@@ -1017,7 +924,6 @@ instance.prototype.init_actions = function (system) {
 				choices: [
 					{ id: 'DB_ULRX0_SERVICE_SELECT_MODE&value=Prog Num', label: 'Prog Num' },
 					{ id: 'DB_ULRX0_SERVICE_SELECT_MODE&value=PIDs', label: 'PIDs' },
-
 				]
 			},
 		],
@@ -1029,8 +935,6 @@ instance.prototype.init_actions = function (system) {
 	};
 
 	actionsArr.DB_ULRX0_PROGRAM_NUMBER = {
-
-
 		label: 'Decoder1 Program Number',
 		options: [
 			{
@@ -1045,18 +949,14 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_PROGRAM_NUMBER&value=' + action.options.dec1programnumber;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_PIDs = {
-
-
 		label: 'Decoder1 PIDs',
 		options: [
 			{
@@ -1170,7 +1070,6 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let videoPid = 'DB_ULRX0_VIDEO_PID&value=' + action.options.DB_ULRX0_VIDEO_PID;
 			self.log('debug', 'CMD Send: ' + videoPid);
@@ -1212,7 +1111,6 @@ instance.prototype.init_actions = function (system) {
 			self.log('debug', 'CMD Send: ' + audio8PID);
 			self.sendCommand(audio8PID);
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_AUTO_ENCODER_MODE = {
@@ -1227,8 +1125,6 @@ instance.prototype.init_actions = function (system) {
 				choices: [
 					{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Auto', label: 'Auto' },
 					{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Manual', label: 'Manual' },
-
-
 				]
 			},
 		],
@@ -1239,7 +1135,6 @@ instance.prototype.init_actions = function (system) {
 		}
 	};
 
-
 	actionsArr.DB_ULRX0_AUTO_ENCODER_MODE = {
 		label: 'Decoder1 Audio selection',
 		options: [
@@ -1252,8 +1147,6 @@ instance.prototype.init_actions = function (system) {
 				choices: [
 					{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Auto', label: 'Auto' },
 					{ id: 'DB_ULRX0_AUTO_ENCODER_MODE&value=Manual', label: 'Manual' },
-
-
 				]
 			},
 		],
@@ -1281,7 +1174,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE0&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE0&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE0&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1291,6 +1183,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE1 = {
 		label: 'Decoder1 Audio 2 mode',
 		options: [
@@ -1308,7 +1201,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE1&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE1&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE1&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1318,6 +1210,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE2 = {
 		label: 'Decoder1 Audio 3 mode',
 		options: [
@@ -1335,7 +1228,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE2&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE2&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE2&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1345,6 +1237,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE3 = {
 		label: 'Decoder1 Audio 4 mode',
 		options: [
@@ -1362,7 +1255,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE3&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE3&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE3&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1372,6 +1264,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE4 = {
 		label: 'Decoder1 Audio 5 mode',
 		options: [
@@ -1389,7 +1282,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE4&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE4&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE4&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1399,6 +1291,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE5 = {
 		label: 'Decoder1 Audio 6 mode',
 		options: [
@@ -1416,7 +1309,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE5&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE5&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE5&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1426,6 +1318,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE6 = {
 		label: 'Decoder1 Audio 7 mode',
 		options: [
@@ -1443,7 +1336,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE6&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE6&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE6&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1453,6 +1345,7 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
+
 	actionsArr.DB_ULRX0_AUDIO_MODE7 = {
 		label: 'Decoder1 Audio 8 mode',
 		options: [
@@ -1470,7 +1363,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_ULRX0_AUDIO_MODE7&value=AAC-raw ES', label: 'AAC-raw ES' },
 					{ id: 'DB_ULRX0_AUDIO_MODE7&value=AAC-ADTS', label: 'AAC-ADTS' },
 					{ id: 'DB_ULRX0_AUDIO_MODE7&value=AAC-LATM', label: 'AAC-LATM' },
-
 				]
 			},
 		],
@@ -1480,7 +1372,6 @@ instance.prototype.init_actions = function (system) {
 			self.sendCommand(cmd);
 		}
 	};
-
 
 	actionsArr.DB_ULRX0_ANALOGUE_SOURCE = {
 		label: 'Analog source',
@@ -1525,13 +1416,11 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_AUDIO_LEVEL0&value=' + action.options.DB_ULRX0_AUDIO_LEVEL0;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	actionsArr.DB_ULRX0_AUDIO_LEVEL1 = {
@@ -1549,17 +1438,14 @@ instance.prototype.init_actions = function (system) {
 				range: false,
 			}
 		],
-
 		callback: function (action, bank) {
 			let cmd = 'DB_ULRX0_AUDIO_LEVEL1&value=' + action.options.DB_ULRX0_AUDIO_LEVEL1;
 			self.log('debug', 'CMD Send: ' + cmd);
 			self.sendCommand(cmd);
 		}
-
 	};
 
 	if (this.config.Descrambling) {
-
 		actionsArr.DB_P17101_SCRAM_TYPE = {
 			label: 'Decoder 1 Descrambling type',
 			options: [
@@ -1573,7 +1459,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_P17101_SCRAM_TYPE&value=Off', label: 'Off' },
 						{ id: 'DB_P17101_SCRAM_TYPE&value=BISS-1', label: 'BISS-1' },
 						{ id: 'DB_P17101_SCRAM_TYPE&value=BISS-E', label: 'BISS-E' },
-
 					]
 				},
 			],
@@ -1711,7 +1596,6 @@ instance.prototype.init_actions = function (system) {
 					{ id: 'DB_P17101_USER_DATA_RATE&value=115200', label: '115200' },
 					{ id: 'DB_P17101_USER_DATA_RATE&value=153600', label: '153600' },
 					{ id: 'DB_P17101_USER_DATA_RATE&value=230400', label: '230400' },
-
 				]
 			},
 		],
@@ -1748,18 +1632,11 @@ instance.prototype.init_actions = function (system) {
 	};
 
 
-
-
-
-
-	/////////////////////////////////////////////////
-	//Second Decoder. Copied settings from Decoder0//
-	/////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+	//Second Decoder. Only if 2nd Decoder licence is applied//
+	//////////////////////////////////////////////////////////
 	if (this.config.DualDecode) {
-
 		if (this.config.H264) {
-
-
 			actionsArr.DB_ULRX1_VIDEO_ENCODING = {
 				label: 'Decoder2 encoding standard',
 				options: [
@@ -1773,7 +1650,6 @@ instance.prototype.init_actions = function (system) {
 							{ id: 'DB_ULRX1_VIDEO_ENCODING&value=MPEG-2', label: 'MPEG-2' },
 							{ id: 'DB_ULRX1_VIDEO_ENCODING&value=AVC (H.264)', label: 'AVC (H.264)' },
 							{ id: 'DB_ULRX1_VIDEO_ENCODING&value=HEVC (H.265) UHD', label: 'HEVC (H.265) UHD' },
-
 						]
 					},
 				],
@@ -1783,10 +1659,7 @@ instance.prototype.init_actions = function (system) {
 					self.sendCommand(cmd);
 				}
 			};
-
 		}
-
-
 
 		actionsArr.DB_ULRX1_VIDEO_FORMAT_MODE = {
 			label: 'Decoder2 video format mode',
@@ -1809,8 +1682,8 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
-		if (this.config.uhd) {
 
+		if (this.config.uhd) {
 			actionsArr.DB_ULRX1_VIDEO_FORMAT = {
 				label: 'Decoder2 video format',
 				options: [
@@ -1850,7 +1723,6 @@ instance.prototype.init_actions = function (system) {
 							{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp50', label: 'UHDp50' },
 							{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp59', label: 'UHDp59' },
 							{ id: 'DB_ULRX1_VIDEO_FORMAT&value=UHDp60', label: 'UHDp60' },
-
 						]
 					},
 				],
@@ -1892,8 +1764,6 @@ instance.prototype.init_actions = function (system) {
 							{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p50', label: '1080p50' },
 							{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p59', label: '1080p59' },
 							{ id: 'DB_ULRX1_VIDEO_FORMAT&value=1080p60', label: '1080p60' },
-
-
 						]
 					},
 				],
@@ -1904,6 +1774,7 @@ instance.prototype.init_actions = function (system) {
 				}
 			};
 		}
+
 		actionsArr.DB_ULRX1_VIDEO_DELAY_MODE = {
 			label: 'Decoder2 video delay mode',
 			options: [
@@ -1927,8 +1798,6 @@ instance.prototype.init_actions = function (system) {
 		};
 
 		actionsArr.DB_ULRX1_VIDEO_PTS_OFFSET = {
-
-
 			label: 'Decoder2 Video PTS offset',
 			options: [
 				{
@@ -1943,18 +1812,14 @@ instance.prototype.init_actions = function (system) {
 					range: false,
 				}
 			],
-
 			callback: function (action, bank) {
 				let cmd = 'DB_ULRX1_VIDEO_PTS_OFFSET&value=' + action.options.videoptsoffset;
 				self.log('debug', 'CMD Send: ' + cmd);
 				self.sendCommand(cmd);
 			}
-
 		};
 
 		actionsArr.DB_ULRX1_AUDIO_PTS_OFFSET = {
-
-
 			label: 'Decoder2 Audio PTS offset',
 			options: [
 				{
@@ -1969,13 +1834,11 @@ instance.prototype.init_actions = function (system) {
 					range: false,
 				}
 			],
-
 			callback: function (action, bank) {
 				let cmd = 'DB_ULRX1_AUDIO_PTS_OFFSET&value=' + action.options.audioptsoffset;
 				self.log('debug', 'CMD Send: ' + cmd);
 				self.sendCommand(cmd);
 			}
-
 		};
 
 		actionsArr.DB_ULRX1_MONITOR_OUTPUT = {
@@ -1995,7 +1858,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-top right', label: 'SDI-top right' },
 						{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-bottom left', label: 'SDI-bottom left' },
 						{ id: 'DB_ULRX1_MONITOR_OUTPUT&value=SDI-bottom right', label: 'SDI-bottom right' },
-
 					]
 				},
 			],
@@ -2007,8 +1869,6 @@ instance.prototype.init_actions = function (system) {
 		};
 
 		actionsArr.DB_ULRX1_OSD_ENABLE = {
-
-
 			label: 'Decoder 2 Monitor Out OSD Enable',
 			options: [
 				{
@@ -2017,12 +1877,8 @@ instance.prototype.init_actions = function (system) {
 					id: 'DB_ULRX01_OSD_ENABLE',
 					default: true
 				},
-
-
 			],
-
 			callback: function (action, bank) {
-
 				if (action.options.DB_ULRX1_OSD_ENABLE) {
 					let cmd = 'DB_ULRX1_OSD_ENABLE&value=On';
 					self.log('debug', 'CMD Send: ' + cmd);
@@ -2033,11 +1889,9 @@ instance.prototype.init_actions = function (system) {
 					self.sendCommand(cmd);
 				}
 			}
-
 		};
+
 		actionsArr.DB_ULRX1_OSD_PID = {
-
-
 			label: 'Decoder2 OSD PID',
 			options: [
 				{
@@ -2052,14 +1906,13 @@ instance.prototype.init_actions = function (system) {
 					range: false,
 				}
 			],
-
 			callback: function (action, bank) {
 				let cmd = 'DB_ULRX1_OSD_PID&value=' + action.options.dec2osdpid;
 				self.log('debug', 'CMD Send: ' + cmd);
 				self.sendCommand(cmd);
 			}
-
 		};
+
 		actionsArr.DB_ULRX1_VIDEO_LOSS = {
 			label: 'Decoder2 Video loss action',
 			options: [
@@ -2074,8 +1927,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_VIDEO_LOSS&value=Freeze', label: 'Freeze' },
 						{ id: 'DB_ULRX1_VIDEO_LOSS&value=Black', label: 'Black' },
 						{ id: 'DB_ULRX1_VIDEO_LOSS&value=Bars', label: 'Bars' },
-
-
 					]
 				},
 			],
@@ -2099,7 +1950,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_HDR_MODE&value=Off', label: 'Off' },
 						{ id: 'DB_ULRX1_HDR_MODE&value=On', label: 'On' },
 						{ id: 'DB_ULRX1_HDR_MODE&value=Auto', label: 'Auto' },
-
 					]
 				},
 			],
@@ -2111,8 +1961,6 @@ instance.prototype.init_actions = function (system) {
 		};
 
 		actionsArr.DB_ULRX1_BREAKUP_DURATION = {
-
-
 			label: 'Decoder2 Breakup duration',
 			options: [
 				{
@@ -2127,13 +1975,11 @@ instance.prototype.init_actions = function (system) {
 					range: false,
 				}
 			],
-
 			callback: function (action, bank) {
 				let cmd = 'DB_ULRX1_BREAKUP_DURATION&value=' + action.options.dec2breakupduration;
 				self.log('debug', 'CMD Send: ' + cmd);
 				self.sendCommand(cmd);
 			}
-
 		};
 
 		actionsArr.DB_ULRX1_SERVICE_SELECT_MODE = {
@@ -2148,7 +1994,6 @@ instance.prototype.init_actions = function (system) {
 					choices: [
 						{ id: 'DB_ULRX1_SERVICE_SELECT_MODE&value=Prog Num', label: 'Prog Num' },
 						{ id: 'DB_ULRX1_SERVICE_SELECT_MODE&value=PIDs', label: 'PIDs' },
-
 					]
 				},
 			],
@@ -2160,8 +2005,6 @@ instance.prototype.init_actions = function (system) {
 		};
 
 		actionsArr.DB_ULRX1_PROGRAM_NUMBER = {
-
-
 			label: 'Decoder2 Program Number',
 			options: [
 				{
@@ -2176,18 +2019,14 @@ instance.prototype.init_actions = function (system) {
 					range: false,
 				}
 			],
-
 			callback: function (action, bank) {
 				let cmd = 'DB_ULRX1_PROGRAM_NUMBER&value=' + action.options.dec2programnumber;
 				self.log('debug', 'CMD Send: ' + cmd);
 				self.sendCommand(cmd);
 			}
-
 		};
 
 		actionsArr.DB_ULRX1_PIDs = {
-
-
 			label: 'Decoder2 PIDs',
 			options: [
 				{
@@ -2301,7 +2140,6 @@ instance.prototype.init_actions = function (system) {
 					range: false,
 				}
 			],
-
 			callback: function (action, bank) {
 				let videoPid = 'DB_ULRX1_VIDEO_PID&value=' + action.options.DB_ULRX1_VIDEO_PID;
 				self.log('debug', 'CMD Send: ' + videoPid);
@@ -2343,7 +2181,6 @@ instance.prototype.init_actions = function (system) {
 				self.log('debug', 'CMD Send: ' + audio8PID);
 				self.sendCommand(audio8PID);
 			}
-
 		};
 
 		actionsArr.DB_ULRX1_AUTO_ENCODER_MODE = {
@@ -2358,8 +2195,6 @@ instance.prototype.init_actions = function (system) {
 					choices: [
 						{ id: 'DB_ULRX1_AUTO_ENCODER_MODE&value=Auto', label: 'Auto' },
 						{ id: 'DB_ULRX1_AUTO_ENCODER_MODE&value=Manual', label: 'Manual' },
-
-
 					]
 				},
 			],
@@ -2369,6 +2204,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE0 = {
 			label: 'Decoder2 Audio 1 mode',
 			options: [
@@ -2386,7 +2222,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE0&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE0&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE0&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2396,6 +2231,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE1 = {
 			label: 'Decoder2 Audio 2 mode',
 			options: [
@@ -2413,7 +2249,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE1&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE1&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE1&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2423,6 +2258,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE2 = {
 			label: 'Decoder2 Audio 3 mode',
 			options: [
@@ -2440,7 +2276,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE2&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE2&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE2&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2450,6 +2285,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE3 = {
 			label: 'Decoder2 Audio 4 mode',
 			options: [
@@ -2467,7 +2303,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE3&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE3&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE3&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2477,6 +2312,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE4 = {
 			label: 'Decoder2 Audio 5 mode',
 			options: [
@@ -2494,7 +2330,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE4&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE4&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE4&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2504,6 +2339,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE5 = {
 			label: 'Decoder2 Audio 6 mode',
 			options: [
@@ -2521,7 +2357,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE5&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE5&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE5&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2531,6 +2366,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE6 = {
 			label: 'Decoder2 Audio 7 mode',
 			options: [
@@ -2548,7 +2384,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE6&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE6&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE6&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2558,6 +2393,7 @@ instance.prototype.init_actions = function (system) {
 				self.sendCommand(cmd);
 			}
 		};
+
 		actionsArr.DB_ULRX1_AUDIO_MODE7 = {
 			label: 'Decoder2 Audio 8 mode',
 			options: [
@@ -2575,7 +2411,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX1_AUDIO_MODE7&value=AAC-raw ES', label: 'AAC-raw ES' },
 						{ id: 'DB_ULRX1_AUDIO_MODE7&value=AAC-ADTS', label: 'AAC-ADTS' },
 						{ id: 'DB_ULRX1_AUDIO_MODE7&value=AAC-LATM', label: 'AAC-LATM' },
-
 					]
 				},
 			],
@@ -2612,14 +2447,11 @@ instance.prototype.init_actions = function (system) {
 		//Todo: Add settings for Genlock Phase adjustment for each resolution
 
 	}
-
-
 	self.setActions(actionsArr);
 }
 
 instance.prototype.sendCommand = function (cmd) {
 	let self = this;
-
 	let prefix = 'mk2/lib/common/iframe.php?param=';
 
 	if (cmd !== undefined) {
