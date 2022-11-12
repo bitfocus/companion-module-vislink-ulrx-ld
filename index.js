@@ -2,13 +2,6 @@ var instance_skel = require('../../instance_skel');
 var debug;
 var log;
 
-function addZero(i) {
-	if (i < 10) {
-		i = "0" + i;
-	}
-	return i;
-}
-
 function instance(system, id, config) {
 	let self = this;
 
@@ -263,7 +256,6 @@ instance.prototype.init_actions = function (system) {
 				choices: [
 					{ id: 'DB_ULRX_RX_MODE&value=LMS-T', label: 'LMS-T' },
 					{ id: 'DB_ULRX_RX_MODE&value=DVB-T', label: 'DVB-T' },
-
 				]
 			},
 		],
@@ -303,7 +295,6 @@ instance.prototype.init_actions = function (system) {
 						{ id: 'DB_ULRX_CHAN_BW&value=20MHz (Dual)', label: '20MHz (Dual)' },
 						{ id: 'DB_ULRX_CHAN_BW&value=24MHz (Dual)', label: '24MHz (Dual)' },
 						{ id: 'DB_ULRX_CHAN_BW&value=Auto', label: 'Auto' },
-
 					]
 				},
 			],
